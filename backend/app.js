@@ -3,9 +3,23 @@ const app = express();
 const morgan = require('morgan')
 require("dotenv").config();
 const routes = require('./src/routes/index')
+const mongoose = require("mongoose");
 
-// settings
-app.set('port', process.env.PORT || 3000);
+
+// Mongoose connection
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(x => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err);
+  });
 
 // middlewares
 app.use(morgan('dev'))
@@ -14,8 +28,7 @@ app.use(express.urlencoded({extended: false}));
 
 
 // routes
-app.use(routes);
+app.use('/api', routes);
 
 
-// start the server
-app.listen(app.get('port'), () => console.log('Server on port', app.get('port')));
+module.exports = app;

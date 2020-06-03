@@ -1,34 +1,12 @@
 const { Router } = require('express');
 const router = Router();
 
-router.post('/create', (req,res) => {
-    
-    res.json(data);
-})
+const indexControllers = require('../controllers/index')
 
-
-router.get('/show/all', (req,res) => {
-
-    res.json(data);
-})
-
-
-router.get('/show/:id', (req,res) => {
-
-    res.json(data);
-})
-
-
-router.post('/fav/:id', (req,res) => {
-
-    res.json(data);
-})
-
-
-router.get('/fav/all', (req,res) => {
-
-    res.json(data);
-})
-
+router.post('/create', indexControllers.createNewNote);
+router.get('/show/all', indexControllers.showAllNotes);
+router.get('/show/:id', indexControllers.noteDetails);
+router.post('/fav/:id', indexControllers.favoriteNote);
+router.get('/fav/all', indexControllers.showAllFavorites);
 
 module.exports = router;
