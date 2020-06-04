@@ -4,6 +4,7 @@ const morgan = require('morgan')
 require("dotenv").config();
 const routes = require('./src/routes/index')
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser')
 
 
 // Mongoose connection
@@ -23,8 +24,8 @@ mongoose
 
 // middlewares
 app.use(morgan('dev'))
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 
 // routes

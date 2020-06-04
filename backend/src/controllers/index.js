@@ -1,5 +1,7 @@
-const Note = require('../models/Note');
+const regeneratorRuntime = require("regenerator-runtime/runtime.js");
 
+
+const Note = require('../models/Note');
 
 const createNewNote = async (req, res) => {
 	const { phrase } = req.body;
@@ -56,5 +58,6 @@ module.exports = {
     showAllNotes,
     noteDetails,
     favoriteNote,
-    showAllFavorites
+    showAllFavorites,
+    Note
 }
